@@ -1,25 +1,36 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import axios from "axios";
+// components
+import Items from "./Items";
 
-const ItemList = ({ characters }) => {
+function ItemList() {
+  const [characters, setCharacters] = useState([]);
+  
+  const url = "https://rickandmortyapi.com/api/character";
+
+  const fetchCharacters = (url) => {
+    axios
+      .get(url)
+      .then((data) => {
+        setCharacters(data.data.results);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
+
+
+  useEffect(() => {
+    fetchCharacters(url);
+
+  }, []);
+
   return (
-    <div className="container">
-      <div className="row">
-        {characters.map((item, index) => (
-          <div key={index} className="col-lg-4  col-sm-10 mb-2">
-            <div className="card container " style={{ minWidth: "200px" }}>
-              <img className="card-img-top mt-3" src={item.image} alt="character" />
-              <div className="card-body container">
-                <h5 className="card-title text-primary h2">{item.name}</h5>
-                <hr />
-                <p className="card-text text-secundary">Species: {item.species}</p>
-                <p className="card-text">Location: {item.location.name}</p>
-              </div>
-            </div>
-          </div>
-        ))}
-      </div>
-    </div>
+    <>
+      <Items characters={characters} />  
+        
+    </>
   );
-};
+}
 
 export default ItemList;

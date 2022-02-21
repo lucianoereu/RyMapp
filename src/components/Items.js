@@ -1,35 +1,31 @@
-import React, { useEffect, useState } from "react";
-import axios from "axios";
-// components
-import ItemLists from "./ItemList";
+import React from "react";
+import { Link } from "react-router-dom";
 
-function Items() {
-  const [characters, setCharacters] = useState([]);
-  const [info, setInfo] = useState({});
-  const url = "https://rickandmortyapi.com/api/character";
-
-  const fetchCharacters = (url) => {
-    axios
-      .get(url)
-      .then((data) => {
-        setCharacters(data.data.results);
-        setInfo(data.data.info);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-  };
-
-  useEffect(() => {
-    fetchCharacters(url);
-
-  }, []);
-
+const Items = ({ characters }) => {
   return (
-    <>
-      <ItemLists characters={characters} />     
-    </>
+    <div className="container">
+      <div className="row">
+        {characters.map((item, index) => (
+          <div key={index} className="col-lg-4  col-sm-10 mb-2">
+            <div className="card container " style={{ minWidth: "200px" }}>
+              <img className="card-img-top mt-3" src={item.image} alt="character" />
+              <div className="card-body container">
+                <h5 className="card-title text-primary h2">{item.name}</h5>
+                <hr />
+                <p className="card-text text-secundary">Species: {item.species}</p>
+                <p className="card-text">Location: {item.location.name}</p>
+                  <Link to={`/characters/${item.id}`}>
+                <button className="btn btn-outline-primary">
+                info</button>
+                    
+                  </Link>
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
   );
-}
+};
 
 export default Items;

@@ -30,11 +30,12 @@ const ItemCount = ({ count, onIncrement, onDecrement }) => {
 
     return (
         <div className="container contenedor-contador text-center">
-    <div className="container  bd-highlight mb-3 item-count">
+    <div className="container grid bd-highlight mb-3 item-count">
         <button type="button" className=" btn btn-outline-danger" onClick={Decrementar}>-</button>
-        <span className="num-contador text-muted">        {Count}       </span>
+        <span className="num-contador text-muted">{Count}</span>
         <button type="button" className="btn btn-outline-success" onClick={Incrementar}>+</button>
     </div>
+    <button className="btn btn-outline-light" > agregar </button>
     </div> );
 };
 

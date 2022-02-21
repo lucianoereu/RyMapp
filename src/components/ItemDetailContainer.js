@@ -1,23 +1,16 @@
 
-import { useEffect, useState  } from "react";
+
 import ItemDetail from "./ItemDetail";
+import React from "react";
 
 
+function ItemDetailContainer (){
 
-
-const ItemDetailContainer = () => {
-    const [itemDetail, setItemDetail] = useState({});
-
-    useEffect(() => {
-    
-        fetch(`https://rickandmortyapi.com/api/character/species/human`)
-        .then(result => setItemDetail(result))
-        .catch(error => console.log(error));
-    }, []);
-
-    return (<ItemDetail itemDetail={itemDetail} />);
-
+    return(
+        <div>
+            <ItemDetail/>
+        </div>
+    )
 }
-
 
 export default ItemDetailContainer;
