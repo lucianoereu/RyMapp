@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import Api from "./Api";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import ItemCount from "./ItemCount";
-import Items from "./Items";
+
 
 
 
@@ -13,13 +13,13 @@ const [item, setItem] = useState({});
 
     useEffect (() => {
        async function getCharacter() {
-           setItem(await Api.getCharacter(4));
+           setItem(await Api.getCharacter(1));
            console.log(item);
          }
          
             
         getCharacter();
-    }, [item])
+    }, [])
 
 return (
 

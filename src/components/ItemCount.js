@@ -35,7 +35,8 @@ const ItemCount = ({ count, onIncrement, onDecrement }) => {
         <span className="num-contador text-muted">{Count}</span>
         <button type="button" className="btn btn-outline-success" onClick={Incrementar}>+</button>
     </div>
-    <button className="btn btn-outline-light" > agregar </button>
+    
+    <button className="btn btn-outline-light" > agregar carrito</button>
     </div> );
 };
 

@@ -8,20 +8,22 @@ let ItemListContainer = () => {
     const [characters, setCharacters] = useState([]);
 
     const url = "https://rickandmortyapi.com/api/character";
+    const urlSpecies="https://rickandmortyapi.com/api/character/?species"
 
     const {idSpecies} = useParams();
 
     console.log(idSpecies);
 
         useEffect (() => {
-            fetchCharacters(url, characters.filter(characters => characters.species === idSpecies));
+            fetchCharacters(url,urlSpecies);
+
         }, []);
         
-        const fetchCharacters = (url) => {
+        const fetchCharacters = (url,urlSpecies) => {
             axios
-                .get(url)
+                .get(url,urlSpecies)
                 .then(response => {
-                    setCharacters(characters.concat(characters.species));
+                    setCharacters(response.data.results);
                 })
                 .catch(error => {
                     console.log(error);
